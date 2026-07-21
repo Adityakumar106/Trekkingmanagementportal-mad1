@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaffTrekmanage</title>
+    <link rel="stylesheet" href="../static/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<style>
+    #main {
+        min-height: 100vh;
+        background: none;
+    }
+
+    body {
+        background: rgb(111, 224, 238);
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                Bytrek
+            </a>
+
+
+
+
+
+            <a href="/staff" class="btn btn-danger">
+                back
+            </a>
+
+        </div>
+        </div>
+    </nav>
+
+    <div id="main">
+        <div>
+            <div class="card" style="margin: 30px; margin-left: 60px; margin-right: 820px;">
+
+                <div class="card-body">
+                    <h5 class="card-title"> {{ trek.trek_name }} </h5>
+
+                    <p>
+                        location: {{ trek.location }}
+                    </p>
+                    <p>
+                        Duration: {{ trek.duration_days }}
+                    </p>
+                    <div style="display: flex; gap: 70px;">
+                        <span>
+                            Start date: {{ trek.start_date }}
+                        </span>
+
+                        <span>
+                            End date: {{ trek.end_date }}
+                        </span>
+                    </div>
+                    <br>
+                    <div style="display: flex; gap: 70px;">
+                        <span>
+                            Total slot: {{ trek.available_slots }}
+                        </span>
+
+                        <span>
+                            Available Slot: {{ trek.status }}
+                        </span>
+                    </div>
+
+                </div>
+                <form method="POST" action="/staff/trek/{{ trek.id }}/status">
+
+                    <select class="form-select mb-2" name="status">
+
+                        <option value="Open" {% if trek.status=="Open" %} selected {% endif %}>
+                            Open
+                        </option>
+
+                        <option value="Closed" {% if trek.status=="Closed" %} selected {% endif %}>
+                            Closed
+                        </option>
+
+                        <option value="Completed" {% if trek.status=="Completed" %} selected {% endif %}>
+                            Completed
+                        </option>
+
+                    </select>
+
+                    <button class="btn btn-primary">
+                        Update Status
+                    </button>
+
+                </form>
+            </div>
+            <div style="margin-top: 20px ;">
+                <h4>Participants</h4>
+                <div class="box">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                            <tr>
+                                <td scope="row">{{ loop.index }}</td>
+                                <td>{{ booking.user.username }}</td>
+                                <td>{{ booking.booking_date.strftime('%d-%m-%Y') }}</td>
+                                <td>{{ booking.status }}</td>
+
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    No participants yet
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="margin: 30px;">
+                <a href="/staff/{{ trek.id }}/start" type="button" class="btn btn-primary">Mark as started</a>
+
+                <a href="/staff/{{ trek.id }}/complete" type="button" class="btn btn-success">Completed</a>
+            </div>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+*{
+    margin:0px;
+    padding: 0px;
+    color:black
+    
+}
+#main{
+    border:3px solid rgb(140, 194, 228);
+    height: 100%;
+    background: linear-gradient(to right, rgb(73, 221, 224), rgb(20, 20, 81))
+}
+#canvas{
+    
+    width: 60%;
+    height: 800px;
+    margin: auto;
+    margin-top: 20px;
+    
+}
+#form{
+    width: 40%;
+    height: 440px;
+    border: 2px solid rgb(72, 175, 239);
+    margin: auto;
+    margin-top: 170px;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: rgb(117, 150, 170);
+}
+.box{
+    background-color: azure;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 60px;
+    margin-right: 70px;
+    border: 1px solid black;
+}
+.item{
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    border: rgb(72, 175, 239);
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding: 8px 12px;
+    border: 1px solid black;  
+    border-radius: 4px;
+    
+}
+.btn{
+    padding: 8px;
+    cursor:pointer;
+}
+table{
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 4px;
+}

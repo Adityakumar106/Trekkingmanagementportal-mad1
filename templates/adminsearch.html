@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2>Search Results for "{{ q }}"</h2>
+
+    <hr>
+
+    <h4>Users</h4>
+
+    {% if users %}
+        {% for u in users %}
+            <div class="card mb-2">
+                <div class="card-body">
+
+                    <strong>{{ u.username }}</strong>
+
+                    <a href="/admin/user/{{ u.id }}"
+                       class="btn btn-primary btn-sm float-end">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+
+    <hr>
+
+    <h4>Staff</h4>
+
+    {% if staffs %}
+        {% for s in staffs %}
+            <div class="card mb-2">
+                <div class="card-body">
+
+                    <strong>{{ s.username }}</strong>
+
+                    <a href="/admin/staff/{{ s.id }}"
+                       class="btn btn-success btn-sm float-end">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No staff found.</p>
+    {% endif %}
+
+    <hr>
+
+    <h4>Treks</h4>
+
+    {% if treks %}
+        {% for t in treks %}
+            <div class="card mb-2">
+                <div class="card-body">
+
+                    <strong>{{ t.trek_name }}</strong>
+
+                    <a href="/admin/trek/{{ t.id }}"
+                       class="btn btn-info btn-sm float-end">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No treks found.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

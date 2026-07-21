@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        overflow: hidden;
+        
+    }
+
+    #form {
+        height: 360px;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form">
+                <H2 style="text-decoration: underline">Login Form</H2>
+                <br>
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="name" placeholder="email" name="email">
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                            name="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" value="Login">Submit</button>
+                        <br>
+                        Do not have an account? <a href="/register">Register</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

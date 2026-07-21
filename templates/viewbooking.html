@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View bookings</title>
+
+    <link rel="stylesheet" href="../static/index.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" crossorigin="anonymous">
+</head>
+
+<style>
+    #main {
+        min-height: 100vh;
+        background: none;
+    }
+
+    body {
+        background: rgb(111, 224, 238);
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                Bytrek
+            </a>
+
+            <a href="/admindashboard" class="btn btn-danger">
+                Back
+            </a>
+
+        </div>
+    </nav>
+
+    <div id="main">
+
+        <div style="margin-top:20px;">
+            <h4>Bookings</h4>
+
+            <div class="box">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Trek</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% if bookings %}
+
+                            {% for b in bookings %}
+                            <tr>
+
+                                <td>{{ loop.index }}</td>
+
+                                <td>
+                                    {{ b.user.username }}
+                                </td>
+
+                                <td>
+                                    {{ b.trek.trek_name }}
+                                </td>
+
+                                <td>
+                                    {{ b.booking_date }}
+                                </td>
+
+                                <td>
+                                    {{ b.status }}
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+                        {% else %}
+
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    No bookings found
+                                </td>
+                            </tr>
+
+                        {% endif %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

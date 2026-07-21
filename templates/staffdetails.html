@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <h2>Staff Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+
+            <p><strong>Username:</strong> {{ staff.username }}</p>
+
+            <p><strong>Email:</strong> {{ staff.email }}</p>
+
+            {% if staff.staffprofile %}
+
+            <p>
+                <strong>Contact:</strong>
+                {{ staff.staffprofile.contact_number }}
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                {{ staff.staffprofile.address }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ staff.staffprofile.status }}
+            </p>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <a href="/admindashboard" class="btn btn-secondary mt-3">
+        Back
+    </a>
+
+</div>
+
+</body>
+</html>

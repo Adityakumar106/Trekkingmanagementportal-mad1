@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"">
+</head>
+
+<style>
+    #main {
+        min-height: 100vh;
+        background: none;
+    }
+
+    body {
+        background: rgb(111, 224, 238);
+    }
+</style>
+
+<body>
+    <nav class=" navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3" href="#">
+            Bytrek
+        </a>
+
+
+
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <span class="nav-link text-white fw-semibold">
+                        Welcome {{ user.username }}
+                    </span>
+                </li>
+            </ul>
+
+
+
+            <div>
+                <a href="/mybookings" class="btn btn-warning">
+                    My booking
+                </a>
+                <a href="/user/profile" class="btn btn-success">
+                    Profile
+                </a>
+
+                <a href="/logout" class="btn btn-danger">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+    </div>
+    </nav>
+
+    <div id="main">
+        <div style="justify-content: space-between; margin: 90px;">
+            <form action="/user" method="GET" class="row g-2 mt-3">
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="search" placeholder="Search Trek"
+                        value="{{ request.args.get('search','') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <select class="form-select" name="difficulty">
+                        <option value="">All Difficulties</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select class="form-select" name="status">
+                        <option value="">All Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Filter
+                    </button>
+                </div>
+
+            </form>
+            <div class="container" style="margin-top: 30px;">
+
+
+
+                {% if treks %}
+
+                {% for trek in treks %}
+
+                <div class="col-md-4 mb-4">
+
+                    <div class="card">
+
+
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                {{ trek.trek_name }}
+                            </h5>
+
+                            <p class="card-text">
+                                <strong>Location:</strong>
+                                {{ trek.location }}
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Difficulty:</strong>
+                                {{ trek.difficulty }}
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Duration:</strong>
+                                {{ trek.duration_days }} Days
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Available Slots:</strong>
+                                {{ trek.available_slots }}
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Status:</strong>
+
+                                {% if trek.status == "Open" %}
+                                <span class="badge bg-success">
+                                    Open
+                                </span>
+
+                                {% elif trek.status == "Closed" %}
+                                <span class="badge bg-danger">
+                                    Closed
+                                </span>
+
+                                {% else %}
+                                <span class="badge bg-secondary">
+                                    {{ trek.status }}
+                                </span>
+
+                                {% endif %}
+                            </p>
+
+                            <a href="/trek/{{ trek.id }}" class="btn btn-outline-primary">
+                                View Details
+                            </a>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+                {% else %}
+
+                <div class="col-12">
+
+                    <div class="alert alert-warning text-center">
+
+                        <h5>No Treks Found</h5>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+
+            </div>
+
+        </div>
+
+        </body>
+
+</html>
